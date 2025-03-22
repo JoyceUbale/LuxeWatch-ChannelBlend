@@ -1,0 +1,205 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 4%;
+
+    --primary: 240 6% 10%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 10%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+
+    --accent: 240 5% 96%;
+    --accent-foreground: 240 6% 10%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 240 6% 70%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 4%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 4%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 6% 10%;
+
+    --secondary: 240 4% 12%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 4% 12%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 240 4% 12%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 240 5% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground min-h-screen antialiased font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  button {
+    @apply outline-none focus:outline-none;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-white/80 dark:bg-black/80 backdrop-blur-md backdrop-saturate-150 border border-white/20 dark:border-black/20;
+  }
+
+  .button-hover {
+    @apply transition-all duration-300 hover:scale-105 active:scale-95;
+  }
+
+  .product-card {
+    @apply relative overflow-hidden bg-white dark:bg-black rounded-2xl shadow-card transition-all duration-500 ease-out hover:shadow-product;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-luxury-black via-luxury-blue to-luxury-black bg-clip-text text-transparent;
+  }
+  
+  .cta-button {
+    @apply rounded-full bg-luxury-blue px-6 py-3 text-white font-medium shadow-button transition-all duration-300 hover:bg-blue-600 hover:scale-105 active:scale-95;
+  }
+  
+  .section-padding {
+    @apply py-24 md:py-32;
+  }
+  
+  .watch-container {
+    @apply relative w-full aspect-square flex items-center justify-center perspective;
+  }
+  
+  .perspective {
+    perspective: 1000px;
+  }
+
+  /* Animation for slide in cart */
+  .animate-slide-in {
+    animation: slide-in 0.3s ease-out forwards;
+  }
+
+  /* Animation for fade in products */
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out forwards;
+  }
+
+  /* Animation for rotating products */
+  .rotate-y-0 {
+    transform: rotateY(0deg);
+  }
+
+  .rotate-y-90 {
+    transform: rotateY(90deg);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
