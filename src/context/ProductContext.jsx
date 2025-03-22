@@ -114,7 +114,7 @@ export const ProductProvider = ({ children }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get('http://localhost:3000/api/products');
+        const { data } = await axios.get('https://luxewatch-channelblend.onrender.com/api/products');
         dispatch({ type: ACTIONS.SET_PRODUCTS, payload: { products: data } });
       } catch (error) {
         console.error('Error fetching products:', error);
