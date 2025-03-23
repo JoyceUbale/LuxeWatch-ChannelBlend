@@ -56,31 +56,38 @@ const productReducer = (state, action) => {
       
       
     
-    case ACTIONS.REMOVE_FROM_CART:
-      return {
-        ...state,
-        cart: state.cart.filter(item => item.id !== action.payload.id)
-      };
-      
-    case ACTIONS.UPDATE_QUANTITY: {
-      const { id, quantity } = action.payload;
-      
-      if (quantity <= 0) {
-        // If quantity is 0 or less, remove the item
+      case ACTIONS.REMOVE_FROM_CART:
         return {
           ...state,
-          cart: state.cart.filter(item => item.id !== id)
+          cart: state.cart.filter(
+            item => !(item._id.toString() === action.payload.id && item.selectedColor === action.payload.selectedColor)
+          )
         };
-      }
       
-      // Otherwise update the quantity
-      return {
-        ...state,
-        cart: state.cart.map(item => 
-          item.id === id ? { ...item, quantity } : item
-        )
-      };
-    }
+      
+        case ACTIONS.UPDATE_QUANTITY: {
+          const { id, quantity, selectedColor } = action.payload;
+        
+          if (quantity <= 0) {
+            // Remove the item if quantity is 0 or less
+            return {
+              ...state,
+              cart: state.cart.filter(
+                item => !(item._id.toString() === id && item.selectedColor === selectedColor)
+              )
+            };
+          }
+        
+          return {
+            ...state,
+            cart: state.cart.map(item =>
+              item._id.toString() === id && item.selectedColor === selectedColor
+                ? { ...item, quantity }
+                : item
+            )
+          };
+        }
+        
     
     case ACTIONS.SET_SELECTED_PRODUCT:
       return {
@@ -137,19 +144,21 @@ export const ProductProvider = ({ children }) => {
     });
   };
   
-  const removeFromCart = (id) => {
-    dispatch({ 
-      type: ACTIONS.REMOVE_FROM_CART, 
-      payload: { id } 
+  const removeFromCart = (id, selectedColor) => {
+    dispatch({
+      type: ACTIONS.REMOVE_FROM_CART,
+      payload: { id, selectedColor }
     });
   };
   
-  const updateQuantity = (id, quantity) => {
+  
+  const updateQuantity = (id, quantity, selectedColor) => {
     dispatch({ 
       type: ACTIONS.UPDATE_QUANTITY, 
-      payload: { id, quantity } 
+      payload: { id, quantity, selectedColor } 
     });
   };
+  
   
   const setSelectedProduct = (product) => {
     dispatch({ 

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingBag, Menu, X, Moon, Sun, Search } from 'lucide-react';
@@ -6,7 +5,7 @@ import { ShoppingBag, Menu, X, Moon, Sun, Search } from 'lucide-react';
 const Navbar = ({ cartItems = [], toggleCart }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  // const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Handle scroll event to change navbar appearance
   useEffect(() => {
@@ -19,14 +18,14 @@ const Navbar = ({ cartItems = [], toggleCart }) => {
   }, []);
 
   // Toggle dark mode
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    if (isDarkMode) {
-      document.documentElement.classList.remove('dark');
-    } else {
-      document.documentElement.classList.add('dark');
-    }
-  };
+  // const toggleDarkMode = () => {
+  //   setIsDarkMode(!isDarkMode);
+  //   if (isDarkMode) {
+  //     document.documentElement.classList.remove('dark');
+  //   } else {
+  //     document.documentElement.classList.add('dark');
+  //   }
+  // };
 
   return (
     <header
@@ -57,13 +56,13 @@ const Navbar = ({ cartItems = [], toggleCart }) => {
           {/* Action Buttons */}
           <div className="flex items-center space-x-5">
 
-            <button
+            {/* <button
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               onClick={toggleDarkMode}
               aria-label="Toggle dark mode"
             >
               {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </button>
+            </button> */}
 
             <button
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors relative"

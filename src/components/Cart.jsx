@@ -107,30 +107,32 @@ const Cart = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem }) =>
                     
                     <div className="flex items-center justify-between mt-3">
                       <div className="flex items-center">
-                        <button 
-                          className="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                          onClick={() => onUpdateQuantity(item.id, Math.max((item.quantity || 1) - 1, 1))}
-                        >
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M4 8H12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                          </svg>
-                        </button>
-                        
-                        <span className="w-8 text-center font-medium text-sm">{item.quantity || 1}</span>
-                        
-                        <button 
-                          className="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                          onClick={() => onUpdateQuantity(item.id, (item.quantity || 1) + 1)}
-                        >
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M8 4V12M4 8H12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                          </svg>
-                        </button>
+                      <button 
+  className="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+  onClick={() => onUpdateQuantity(item._id, Math.max((item.quantity || 1) - 1, 1), item.selectedColor)}
+>
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path d="M4 8H12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>
+</button>
+
+<span className="w-8 text-center font-medium text-sm">{item.quantity || 1}</span>
+
+<button 
+  className="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+  onClick={() => onUpdateQuantity(item._id, (item.quantity || 1) + 1, item.selectedColor)}
+>
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path d="M8 4V12M4 8H12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>
+</button>
+
                       </div>
                       
                       <button 
                         className="p-2 text-gray-500 hover:text-red-500 transition-colors"
-                        onClick={() => onRemoveItem(item.id)}
+                        onClick={() => onRemoveItem(item._id, item.selectedColor)}
+
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
