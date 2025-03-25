@@ -7,7 +7,7 @@ LuxeWatch is an intuitive and responsive web application showcasing a collection
 - **Product List Page:** Displays watches with images, names, brands, and prices.
 - **Product Detail View:** Clicking on a watch shows detailed information in a modal.
 - **Shopping Cart ("My Bag") Feature:** Users can add watches to their bag, view total prices, adjust quantities, and remove items.
-- **State Management:** Implemented using React’s built-in state management (`useState` and `useContext`).
+- **State Management:** Implemented using React’s built-in state management (`useState`,`useEffect` and `useContext`).
 - **Barcode Scanner:** Uses a web-based barcode scanner to scan products.
 - **Backend Integration (Optional Bonus):** LuxeWatch fetches product data dynamically from an API.
 - **Free Tier Render Hosting:** Since the backend is hosted on Render’s free tier, data loading may take a minute.
