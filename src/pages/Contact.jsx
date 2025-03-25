@@ -27,6 +27,7 @@ const Contact = () => {
     e.preventDefault();
     
     // Simulate form submission
+    console.log("Submitted Form" , formData)
     setTimeout(() => {
       setFormStatus({
         submitted: true,
