@@ -3,6 +3,9 @@
 ## 🚀 Overview
 LuxeWatch is an intuitive and responsive web application showcasing a collection of luxury watches. Focus heavily on frontend development, UI design, and interaction.
 
+## Walkthrough Video
+[🎥 Watch the Walkthrough](https://drive.google.com/file/d/1Pdv5OmfIBnTQ-i93d_IRU47Epnlus95R/view?usp=sharing)
+
 ## 📌 Features
 - **Product List Page:** Displays watches with images, names, brands, and prices.
 - **Product Detail View:** Clicking on a watch shows detailed information in a modal.

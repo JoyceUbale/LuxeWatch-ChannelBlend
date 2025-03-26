@@ -23,7 +23,6 @@ const App = () => {
             <Route path="/products" element={<Products />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/scan" element={<ScanProductPage />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
