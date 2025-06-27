@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BarcodeScanner from "../components/BarcodeScanner";
-import Quagga from "quagga"; // ✅ Added QuaggaJS
+import Quagga from "quagga"; 
 
 const ScanProductPage = () => {
   const [barcode, setBarcode] = useState("");
