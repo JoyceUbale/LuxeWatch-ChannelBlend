@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProducts } from '../context/ProductContext';
@@ -8,7 +7,7 @@ import { ChevronLeft, CreditCard, Shield } from 'lucide-react';
 
 const Checkout = () => {
   const navigate = useNavigate();
-  const { cart, removeFromCart } = useProducts();
+  const { cart, removeFromCart, clearCart } = useProducts(); // Add clearCart if available
   const [formData, setFormData] = useState({
     email: '',
     firstName: '',
@@ -81,6 +80,31 @@ const Checkout = () => {
     return Object.keys(newErrors).length === 0;
   };
   
+  // Clear cart function
+  const clearCartItems = () => {
+    // Option 1: If you have a clearCart method in your context
+    if (clearCart && typeof clearCart === 'function') {
+      clearCart();
+    } else {
+      // Option 2: Remove each item individually
+      // Create a copy of cart to avoid mutation during iteration
+      const cartCopy = [...cart];
+      cartCopy.forEach(item => {
+        // Use both possible ID formats to ensure removal
+        const itemId = item._id || item.id;
+        const selectedColor = item.selectedColor;
+        
+        if (selectedColor) {
+          // If item has selected color, remove with color
+          removeFromCart(itemId, selectedColor);
+        } else {
+          // Remove without color specification
+          removeFromCart(itemId);
+        }
+      });
+    }
+  };
+  
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -95,7 +119,7 @@ const Checkout = () => {
       setIsOrderComplete(true);
       
       // Clear cart after successful order
-      cart.forEach(item => removeFromCart(item.id));
+      clearCartItems();
       
       // After 3 seconds, redirect to home
       setTimeout(() => {
@@ -125,7 +149,11 @@ const Checkout = () => {
             </p>
             
             <button 
-              onClick={() => navigate('/')}
+              onClick={() => {
+                // Ensure cart is cleared before navigation
+                clearCartItems();
+                navigate('/');
+              }}
               className="cta-button"
             >
               Continue Shopping
@@ -249,7 +277,7 @@ const Checkout = () => {
                         type="text"
                         id="city"
                         name="city"
-                        className={`w-full px-4 py-2 border rounded-lg focus:ring focus:ring-luxury-blue/20 outline-none transition-all ${
+                        className={`w-full px-4 py-2 border rounded-lg focus:ring focus:ring-luxury-blue/20 outline-all ${
                           errors.city ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                         }`}
                         value={formData.city}
@@ -441,7 +469,7 @@ const Checkout = () => {
                     {/* Cart Items */}
                     <div className="space-y-4 max-h-64 overflow-y-auto pr-2">
                       {cart.map((item) => (
-                        <div key={item.id} className="flex gap-3">
+                        <div key={item._id || item.id} className="flex gap-3">
                           <div className="h-16 w-16 rounded-lg bg-gray-100 dark:bg-gray-700 overflow-hidden flex-shrink-0">
                             <img 
                               src={item.image} 
